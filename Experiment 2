@@ -1,0 +1,43 @@
+def precendence(ope):
+  if ope == "^":
+    return 3
+  if ope == "*" or ope == "/":
+    return 2
+  if ope == "+" or ope == "-":
+    return 1
+  if ope == "(":
+    return 0
+  
+
+
+
+  
+exp = input("enter the expression :")
+exp = exp.replace(' ','')
+exp = exp.replace('',' ')
+exp = exp.split()
+exp.insert(0,"(")
+exp.append(")")
+stack = []
+ans = "" 
+for i in exp:
+  check = ord(i)
+  if (check >= 65 and check <= 90) or (check >= 97 and check <= 125):
+    ans = ans + i
+  
+  else:
+    if i == ")":
+      while(stack[-1] != "("):
+        temp = stack.pop()
+        ans = ans + temp
+      stack.pop()
+    
+    else:
+        if i == '(':
+            stack.append(i)
+        else:
+            res = precendence(i)
+            while(precendence(stack[-1]) >= res):
+              ans = ans + stack.pop()
+            stack.append(i)
+print(ans)
