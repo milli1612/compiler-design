@@ -1,0 +1,11 @@
+st = input("enter the string : ")
+le = len(st)
+if (st[0] == "a" and (st[le-1] == "a" or st[le-1] == "b") and st[le-2] == "c"):
+  for i in range(1,le-2):
+    if st[i] != "b":
+      print(" string not accepted : ")
+      exit()
+  print("string is accepted")
+else:
+  print("String is not accepted")
+  
